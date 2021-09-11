@@ -1,0 +1,11 @@
+.characters-container {
+  display: flex;
+}
+
+.characters-container div {
+  padding: 14px;
+}
+
+.characters p::first-letter {
+  text-transform: capitalize;
+}
