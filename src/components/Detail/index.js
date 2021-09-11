@@ -61,7 +61,6 @@ const Detail = ({ character }) => {
     if (!character) {
       setError(true);
     } else if (character.search) {
-      console.log(typeof character.search);
       formatt = pickSearchDisplayedProperites(character.data);
     } else {
       formatt = pickDisplayedProperites(character.data);
