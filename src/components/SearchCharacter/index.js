@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const inputSectionStyle = {
@@ -28,7 +28,10 @@ const SearchCharacter = () => {
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  const searchCharacter = async () => {
+  const Search = useCallback(async () => {
+    if (!inputFieldValue) {
+      return setError(true);
+    }
     try {
       const data = await fetch(
         `https://swapi.dev/api/people/?search=${inputFieldValue}`
@@ -47,7 +50,7 @@ const SearchCharacter = () => {
         setError(true);
       }
     }
-  };
+  }, [setSearch, setError, history, inputFieldValue, search]);
 
   return (
     <section style={inputSectionStyle}>
@@ -58,8 +61,8 @@ const SearchCharacter = () => {
           setInputFieldValue(e.target.value);
         }}
       />
-      <button type="submit" onClick={() => searchCharacter()}>
-        Submit
+      <button type="submit" onClick={() => Search()}>
+        Search
       </button>
       {error && <h2 style={errorStyle}>Character not found! </h2>}
     </section>

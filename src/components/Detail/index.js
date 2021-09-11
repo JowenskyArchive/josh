@@ -10,49 +10,31 @@ const Detail = ({ character }) => {
   const [details, setDetails] = useState({});
   const [error, setError] = useState(false);
 
-  console.log(character);
-
-  function pickSearchDisplayedProperites({
-    name,
-    height,
-    mass,
-    hair_color,
-    skin_color,
-    eye_color,
-    created,
-    gender,
-    films,
-    starships,
-    vehicles,
-  }) {
+  function pickSearchDisplayedProperites(character) {
     return {
-      name,
-      Height: `${height}in.`,
-      Mass: `${mass}lb.`,
-      'Hair Color': hair_color,
-      'Skin Color': skin_color,
-      'Eye Colors': eye_color,
-      'Birth Year': getYear(new Date(created)),
-      Gender: gender,
+      Name: character.name,
+      Height: `${character.height}in.`,
+      Mass: `${character.mass}lb.`,
+      'Hair Color': character.hair_color,
+      'Skin Color': character.skin_color,
+      'Eye Colors': character.eye_color,
+      'Birth Year': getYear(new Date(character.created)),
+      Gender: character.gender,
+      Films: character.films.length,
+      Starships: character.starships.length,
+      Vehicles: character.vehicles.length,
     };
   }
 
-  function pickDisplayedProperites({
-    name,
-    average_height,
-    skin_colors,
-    hair_colors,
-    eye_colors,
-    created,
-    films,
-  }) {
+  function pickDisplayedProperites(character) {
     return {
-      name,
-      Height: `${average_height}in.`,
-      'Hair Color': hair_colors,
-      'Skin Color': skin_colors,
-      'Eye Colors': eye_colors,
-      'Birth Year': getYear(new Date(created)),
+      Name: character.name,
+      Height: `${character.average_height}in.`,
+      'Hair Color': character.hair_colors,
+      'Skin Color': character.skin_colors,
+      'Eye Colors': character.eye_colors,
+      'Birth Year': getYear(new Date(character.created)),
+      Films: character.films.length,
     };
   }
 
